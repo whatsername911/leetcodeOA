@@ -109,18 +109,20 @@ public class TagList {
 			if(right >= avai.size() && count != 0 && minleft == -1 && minright == -1) {
 				return res;
 			}
-			while(left <= right && count == 0) {
-				String l = avai.get(left);
-				if(map.containsKey(l)) {
-					map.put(l,  map.get(l) + 1);
-					count++;
+			if(count == 0){
+				while(left <= right && count == 0) {
+					String l = avai.get(left);
+					if(map.containsKey(l)) {
+						map.put(l,  map.get(l) + 1);
+						count++;
+					}
+					left++;
 				}
-				left++;
-			}
-			if(right - left < min) {
-				min = right - left;
-				minleft = left - 1;
-				minright = right - 1;
+				if(right - left < min) {
+					min = right - left;
+					minleft = left - 1;
+					minright = right - 1;
+				}
 			}
 		}
 		res.add(minleft);
